@@ -1,6 +1,6 @@
-package com.margun.financia.response;
+package com.margun.financia.usuarios.responses;
 
-import com.margun.financia.model.Usuarios;
+import com.margun.financia.usuarios.persistence.models.Usuarios;
 import lombok.Data;
 
 import java.util.List;
@@ -8,5 +8,4 @@ import java.util.List;
 @Data
 public class UsuariosResponse {
     private List<Usuarios> usuarios;
-
 }
