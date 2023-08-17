@@ -58,6 +58,9 @@ public class UsuariosServiceImpl implements UsuariosService {
         UsuarioResponseRest response = new UsuarioResponseRest();
         List<Usuarios> list = new ArrayList<>();
         try{
+            usuarios.setFecha_modificacion(Utils.getDate());
+            usuarios.setFecha_creacion(Utils.getDate());
+
             Usuarios usuarioSaved = usuariosRepository.save(usuarios);
             if (usuarioSaved != null){
                 list.add(usuarioSaved);

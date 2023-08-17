@@ -23,13 +23,12 @@ public class Usuarios implements Serializable {
     private String clave;
     private String llave_pago;
 
-    @Nullable
-    private String fecha_creacion;
+    @Column(insertable = false, updatable = false)
+    private Date fecha_creacion;
 
-    @Nullable
+    @Column(insertable = false)
     private Date fecha_modificacion;
 
-    @Nullable
-    @Column(name = "fecha_ultimoAcceso")
+    @Column(name = "fecha_ultimoAcceso", insertable = false)
     private Date fecha_ultimoAcceso;
 }
