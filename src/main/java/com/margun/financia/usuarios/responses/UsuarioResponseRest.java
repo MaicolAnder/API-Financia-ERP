@@ -8,5 +8,4 @@ import lombok.Setter;
 @Setter
 public class UsuarioResponseRest extends ResponseRest {
     private UsuariosResponse usuariosResponse = new UsuariosResponse();
-
 }
