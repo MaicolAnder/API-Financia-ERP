@@ -7,6 +7,10 @@ import lombok.Data;
 import java.io.Serializable;
 import java.sql.Date;
 
+/**
+ * DAO Class for access to Usuarios table on database
+ * @author Miguel A Tunubalá
+ */
 @Data
 @Entity
 @Table(name = "usuarios")

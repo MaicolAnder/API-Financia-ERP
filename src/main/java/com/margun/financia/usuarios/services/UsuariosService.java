@@ -10,4 +10,8 @@ public interface UsuariosService {
     public List<UsuarioDTO> findById(Long id);
 
     List<UsuarioDTO> save(UsuarioDTO usuarioDTO);
+
+    List<UsuarioDTO> update(UsuarioDTO usuarioDTO, Long id);
+
+    List<UsuarioDTO> delete(Long id);
 }
