@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface UsuariosService {
 
-    public List<UsuarioDTO> findAll();
+    List<UsuarioDTO> findAll();
 
-    public List<UsuarioDTO> findById(Long id);
+    UsuarioDTO findById(Long id);
 
-    List<UsuarioDTO> save(UsuarioDTO usuarioDTO);
+    UsuarioDTO save(UsuarioDTO usuarioDTO);
 
-    List<UsuarioDTO> update(UsuarioDTO usuarioDTO, Long id);
+    UsuarioDTO update(UsuarioDTO usuarioDTO, Long id);
 
-    List<UsuarioDTO> delete(Long id);
+    UsuarioDTO delete(Long id);
 }

@@ -5,6 +5,7 @@ import com.margun.financia.commons.helpers.Utils;
 import com.margun.financia.usuarios.dto.UsuarioDTO;
 import com.margun.financia.usuarios.persistence.repositories.UsuariosRepository;
 import com.margun.financia.usuarios.persistence.models.Usuarios;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,38 +33,29 @@ public class UsuariosServiceImpl implements UsuariosService {
     }
 
     @Override
-    public List<UsuarioDTO> findById(Long id){
-        List<UsuarioDTO> list = new ArrayList<>();
-
+    public UsuarioDTO findById(Long id){
         Optional<Usuarios> usuariosEntity = usuariosRepository.findById(id);
         if (usuariosEntity.isPresent()) {
-            UsuarioDTO dto = MapperObject.map(usuariosEntity, UsuarioDTO.class);
-            list.add(dto);
+            return MapperObject.map(usuariosEntity.get(), UsuarioDTO.class);
         }
-        return  list;
+        return null;
     }
 
     @Override
-    public List<UsuarioDTO> save(UsuarioDTO dto) {
-        List<UsuarioDTO> list = new ArrayList<>();
+    public UsuarioDTO save(UsuarioDTO dto) {
         Usuarios usuarios = MapperObject.map(dto, Usuarios.class);
 
         usuarios.setFecha_modificacion(Utils.getDate());
         usuarios.setFecha_creacion(Utils.getDate());
 
-        UsuarioDTO save = MapperObject.map(
+        return MapperObject.map(
                                 usuariosRepository.save(usuarios),
                                 UsuarioDTO.class
                          );
-        if (save != null){
-            list.add(save);
-        }
-        return  list;
     }
 
     @Override
-    public List<UsuarioDTO> update(UsuarioDTO dto, Long id) {
-        List<UsuarioDTO> list = new ArrayList<>();
+    public UsuarioDTO update(UsuarioDTO dto, Long id) {
 
         Optional<Usuarios> usuariosEntity = usuariosRepository.findById(id);
         if (usuariosEntity.isPresent()) {
@@ -73,21 +65,20 @@ public class UsuariosServiceImpl implements UsuariosService {
             usuariosEntity.get().setFecha_modificacion(Utils.getDate());
 
             Usuarios updatedUsers = usuariosRepository.save(usuariosEntity.get());
-            if (updatedUsers != null){
-                list.add(MapperObject.map(updatedUsers, UsuarioDTO.class));
-            }
+            return MapperObject.map(updatedUsers, UsuarioDTO.class);
+
         }
-        return  list;
+        return  null;
     }
 
     @Override
-    public List<UsuarioDTO> delete(Long id) {
-        List<UsuarioDTO> list = new ArrayList<>();
+    public UsuarioDTO delete(Long id) {
+
         Optional<Usuarios> usuariosEntity = usuariosRepository.findById(id);
         if (usuariosEntity.isPresent()) {
             usuariosRepository.deleteById(usuariosEntity.get().getId_usuario());
-            list.add(MapperObject.map(usuariosEntity, UsuarioDTO.class));
+            return MapperObject.map(usuariosEntity.get(), UsuarioDTO.class);
         }
-        return list;
+        return null;
     }
 }

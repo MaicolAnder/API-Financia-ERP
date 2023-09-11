@@ -55,9 +55,9 @@ public class UsuariosRestController {
         UsuarioResponseRest response = new UsuarioResponseRest();
         HttpStatus status;
         try{
-            List<UsuarioDTO> list = this.services.findById(id);
-            if (!list.isEmpty()){
-                response.getUsuariosResponse().setUsuarios(list);
+            UsuarioDTO user = this.services.findById(id);
+            if (user != null){
+                response.getUsuariosResponse().setUsuarios(user);
                 response.setMetadata("success");
                 status = HttpStatus.OK;
             } else {
@@ -76,8 +76,8 @@ public class UsuariosRestController {
         UsuarioResponseRest response = new UsuarioResponseRest();
         HttpStatus status;
         try{
-            List<UsuarioDTO> list = this.services.save(usuarioDTO);
-            response.getUsuariosResponse().setUsuarios(list);
+            UsuarioDTO user = this.services.save(usuarioDTO);
+            response.getUsuariosResponse().setUsuarios(user);
             response.setMetadata("success");
             status = HttpStatus.CREATED;
 
@@ -93,9 +93,9 @@ public class UsuariosRestController {
         UsuarioResponseRest response = new UsuarioResponseRest();
         HttpStatus status;
         try{
-            List<UsuarioDTO> list = this.services.update(dto, id);
-            if (!list.isEmpty()){
-                response.getUsuariosResponse().setUsuarios(list);
+            UsuarioDTO usuarioDTO = this.services.update(dto, id);
+            if (usuarioDTO != null){
+                response.getUsuariosResponse().setUsuarios(usuarioDTO);
                 response.setMetadata("success");
                 status = HttpStatus.OK;
             } else {
@@ -114,8 +114,8 @@ public class UsuariosRestController {
         UsuarioResponseRest response = new UsuarioResponseRest();
         HttpStatus status;
         try{
-            List<UsuarioDTO> list = this.services.delete(id);
-            response.getUsuariosResponse().setUsuarios(list);
+            UsuarioDTO usuarioDTO = this.services.delete(id);
+            response.getUsuariosResponse().setUsuarios(usuarioDTO);
             response.setMetadata("success");
             status = HttpStatus.OK;
         } catch (Exception e){

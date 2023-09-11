@@ -6,28 +6,52 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+/**
+ * Class for general api rest response
+ * @author Miguel A Tunubalá
+ */
 public class ResponseRest {
 
     private ArrayList<HashMap<String, String>> metadata = new ArrayList<>();
 
     public ArrayList<HashMap<String, String>> getMetadata() {
-        return metadata;
+        return this.metadata;
     }
 
+    /**
+     * Add to metadata ArrayList HashMap item
+     * @param map HashMap String and String
+     */
+    public void setMetadata(HashMap<String, String> map) {
+        this.getMetadata().add(map);
+    }
+
+    /**
+     * Set message, code and date as String in metadata for response
+     * @param message string
+     * @param code string
+     * @param date util.Date
+     */
     public void setMetadata(String message, String code, Date date) {
         HashMap<String, String> map = new HashMap<>();
         map.put("message", message);
         map.put("code", code);
         map.put("date", date.toString());
-        this.metadata.add(map);
+        setMetadata(map);
     }
 
+    /**
+     * Set message, code and date as String in metadata for response
+     * @param message string
+     * @param code string
+     * @param date string
+     */
     public void setMetadata(String message, String code, String date) {
         HashMap<String, String> map = new HashMap<>();
         map.put("message", message);
         map.put("code", code);
         map.put("date", date);
-        this.metadata.add(map);
+        setMetadata(map);
     }
 
     /**
@@ -40,7 +64,7 @@ public class ResponseRest {
         map.put("message", message);
         map.put("code", code);
         map.put("date", Utils.getCurrenDate());
-        this.metadata.add(map);
+        setMetadata(map);
     }
 
     /**
@@ -52,6 +76,6 @@ public class ResponseRest {
         map.put("message", message);
         map.put("code", "200");
         map.put("date", Utils.getCurrenDate());
-        this.metadata.add(map);
+        setMetadata(map);
     }
 }
